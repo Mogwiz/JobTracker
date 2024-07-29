@@ -1,0 +1,20 @@
+{
+  "name": "jobtracker",
+  "version": "1.0.0",
+  "description": "Fullstack project made in duo",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "author": "Shana / Lorenzo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.1",
+    "sass": "^1.77.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
