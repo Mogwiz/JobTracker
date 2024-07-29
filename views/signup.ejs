@@ -1,6 +1,47 @@
 <%- include('partials/header'); -%>
 
 <body>
-    <h1>signup</h1>
+
+    <form>
+        <h2>Sign up</h2>
+        <label for="firstName">First name</label>
+        <input type="text" name="firstName" required>
+        <div class="firstName error"></div>
+        <label for="lastName">Last name</label>
+        <input type="text" name="lastName" required>
+        <div class="lastName error"></div>
+        <label for="email">Email</label>
+        <input type="text" name="email" required>
+        <div class="email error"></div>
+        <label for="github">GitHub</label>
+        <input type="text" name="github">
+        <div class="github error"></div>
+        <label for="password">Password</label>
+        <input type="password" name="password" required>
+        <div class="password error"></div>
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" name="confirmPassword" required>
+        <div class="confirmPassword error"></div>
+        <button>Sign up</button>
+    </form>
+
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get values
+            const firstName = form.firstName.value;
+            const lastName = form.lastName.value;
+            const email = form.email.value;
+            const github = form.github.value;
+            const password = form.password.value;
+            const confirmPassword = form.confirmPassword.value;
+
+            console.log(firstName, lastName, email, github, password, confirmPassword)
+        })
+    </script>
+
 </body>
 </html>
