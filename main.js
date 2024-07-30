@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
 const User = require('./model/user')
 const Job = require('./model/job')
+const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 
 // Init app & middlewares
 const app = express()
@@ -26,6 +27,8 @@ mongoose.connect(dbURI)
     .catch((err) => console.log(err))
 
 // Routes
+app.get('*', checkUser)
+
 app.get('/', (req, res) =>{
     res.render('home')
 })
@@ -38,15 +41,15 @@ app.get('/signup', (req, res) =>{
     res.render('signup')
 })
 
-app.get('/profile', (req, res) =>{
+app.get('/profile', requireAuth, (req, res) =>{
     res.render('profile')
 })
 
-app.get('/createJob', (req, res) =>{
+app.get('/createJob', requireAuth, (req, res) =>{
     res.render('createJob')
 })
 
-app.get('/job', (req, res) =>{
+app.get('/job', requireAuth, (req, res) =>{
     res.render('job')
 })
 

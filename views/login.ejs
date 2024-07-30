@@ -12,7 +12,7 @@
         <div class="password error"></div>
         <button>Login</button>
     </form>
-
+    <!-- Tu peux supprimer tout ce que tu veux sauf le script -->
     <script>
         const form = document.querySelector('form');
         const emailError = document.querySelector('.email.error')
@@ -42,7 +42,7 @@
                     passwordError.textContent = data.errors.password
                 }
                 if (data.user) {
-                   // location.assign('/')
+                    location.assign('/')
                 }
             }
             catch (err) {
