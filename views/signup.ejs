@@ -4,24 +4,39 @@
 
     <form>
         <h2>Sign up</h2>
+
         <label for="firstName">First name</label>
         <input type="text" name="firstName" required>
         <div class="firstName error"></div>
+
         <label for="lastName">Last name</label>
         <input type="text" name="lastName" required>
         <div class="lastName error"></div>
+
         <label for="email">Email</label>
         <input type="text" name="email" required>
         <div class="email error"></div>
+
         <label for="github">GitHub</label>
         <input type="text" name="github">
         <div class="github error"></div>
+
+        <label for="profilePicture">Profile picture</label>
+        <input type="file" name="profilePicture">
+        <div class="profilePicture error"></div>
+
+        <label for="CV">CV (PDF)</label>
+        <input type="file" name="CV">
+        <div class="CV error"></div>
+
         <label for="password">Password</label>
         <input type="password" name="password" required>
         <div class="password error"></div>
+
         <label for="confirmPassword">Confirm password</label>
         <input type="password" name="confirmPassword" required>
         <div class="confirmPassword error"></div>
+
         <button>Sign up</button>
     </form>
 
