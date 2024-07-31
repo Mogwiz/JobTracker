@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+nav {
+  width: 100%;
+  background-color: rgb(242, 209, 130);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 300px;
+}
+nav h1 a {
+  color: rgb(240, 172, 194);
+  text-decoration: none;
+  text-transform: uppercase;
+  filter: drop-shadow(2px 2px rgba(255, 255, 255, 0.359));
+}
+nav h1 a span {
+  color: rgb(247, 181, 168);
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+nav ul a {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(247, 181, 168);
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+nav ul a:hover {
+  background-color: white;
+  color: rgb(247, 181, 168);
+}
+
+.section-signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.section-signup .decoration {
+  background-color: rgb(242, 209, 130);
+  width: 60vw;
+  padding-left: 40px;
+  padding-top: 50px;
+}
+.section-signup .decoration h2 {
+  font-size: 40px;
+  color: rgb(134, 97, 16);
+  padding-bottom: 20px;
+}
+.section-signup .decoration img {
+  margin-left: -40px;
+  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.4));
+}
+.section-signup .formulaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+.section-signup .formulaire form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  gap: 12px;
+}
+.section-signup .formulaire form h2 {
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+}
+.section-signup .formulaire form input {
+  border: none;
+  height: 35px;
+  background-color: rgb(245, 246, 247);
+  border-radius: 10px;
+  width: 600px;
+}
+.section-signup .formulaire form .name-section, .section-signup .formulaire form .password-section {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.section-signup .formulaire form .name-section input, .section-signup .formulaire form .password-section input {
+  width: 285px;
+}
+.section-signup .formulaire form .name-section .name-first, .section-signup .formulaire form .name-section .name-last, .section-signup .formulaire form .name-section .password-un, .section-signup .formulaire form .name-section .password-deux, .section-signup .formulaire form .password-section .name-first, .section-signup .formulaire form .password-section .name-last, .section-signup .formulaire form .password-section .password-un, .section-signup .formulaire form .password-section .password-deux {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.section-signup .formulaire form label {
+  font-size: 16px;
+  font-weight: 600;
+}
+.section-signup .formulaire form button {
+  background-color: rgb(247, 181, 168);
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  color: white;
+  font-weight: 600;
+  width: 285px;
+  font-size: 16px;
+}
+.section-signup .formulaire form button:hover {
+  background-color: rgb(242, 209, 130);
+}
+.section-signup .formulaire form a {
+  color: black;
+}
+.section-signup .formulaire form a:hover {
+  color: rgb(247, 181, 168);
+}
+
+.login-section {
+  background-color: rgb(242, 209, 130);
+  height: 100vh;
+  /* background-image: url(design.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain; */
+}
+.login-section form::after {
+  content: url(design.png);
+  position: absolute;
+  left: 600px;
+  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.4));
+}
+.login-section form {
+  width: 30vw;
+  height: 70vh;
+  background-color: rgba(255, 255, 255, 0.358);
+  position: relative;
+  left: 160px;
+  top: 100px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-section form .formulaire {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 12px;
+}
+.login-section form .formulaire h2 {
+  font-size: 40px;
+}
+.login-section form .formulaire input {
+  border: none;
+  height: 35px;
+  background-color: rgb(245, 246, 247);
+  border-radius: 10px;
+  width: 300px;
+}
+.login-section form .formulaire button {
+  background-color: rgb(247, 181, 168);
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  color: white;
+  font-weight: 600;
+  width: 285px;
+  font-size: 16px;
+}
+.login-section form .formulaire button:hover {
+  background-color: rgb(242, 209, 130);
+}
+.login-section form .formulaire a {
+  color: black;
+}
+.login-section form .formulaire a:hover {
+  color: rgb(247, 181, 168);
+}
+
+.profil-section {
+  display: grid;
+}
+.profil-section .myprofil {
+  background-color: aquamarine;
+}
+.profil-section .image {
+  background-color: blue;
+}
+.profil-section .detail {
+  background-color: coral;
+}/*# sourceMappingURL=style.css.map */

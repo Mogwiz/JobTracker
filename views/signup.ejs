@@ -1,29 +1,60 @@
-<%- include('partials/header'); -%>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
 
 <body>
+    <div class="section-signup">
+        <div class="decoration">
+            <h2>Organize <br>your job search</h2>
+            <img src="/design.png" alt="Search">
+        </div>
 
-    <form>
-        <h2>Sign up</h2>
-        <label for="firstName">First name</label>
-        <input type="text" name="firstName" required>
-        <div class="firstName error"></div>
-        <label for="lastName">Last name</label>
-        <input type="text" name="lastName" required>
-        <div class="lastName error"></div>
-        <label for="email">Email</label>
-        <input type="text" name="email" required>
-        <div class="email error"></div>
-        <label for="github">GitHub</label>
-        <input type="text" name="github">
-        <div class="github error"></div>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <div class="password error"></div>
-        <label for="confirmPassword">Confirm password</label>
-        <input type="password" name="confirmPassword" required>
-        <div class="confirmPassword error"></div>
-        <button>Sign up</button>
-    </form>
+        <div class="formulaire">
+        <form>
+            <h2>Sign up</h2>
+            <div class="name-section">
+                <div class="name-first">
+                    <label for="firstName">First name</label>
+                        <input type="text" name="firstName" required>
+                    <div class="firstName error"></div>
+                </div>
+                <div class="name-last">
+                    <label for="lastName">Last name</label>
+                        <input type="text" name="lastName" required>
+                    <div class="lastName error"></div>
+                </div>
+            </div>
+
+            <label for="email">Email</label>
+                <input type="text" name="email" required>
+            <div class="email error"></div>
+            <label for="github">GitHub</label>
+                <input type="text" name="github">
+            <div class="github error"></div>
+
+            <div class="password-section">
+                <div class="password-un">
+                    <label for="password">Password</label>
+                        <input type="password" name="password" required>
+                    <div class="password error"></div>
+                </div>
+                <div class="password-deux">
+                    <label for="confirmPassword">Confirm password</label>
+                        <input type="password" name="confirmPassword" required>
+                    <div class="confirmPassword error"></div>
+                </div>
+            </div>
+            <button>Sign up</button>
+            <p>Already registered ? <a href="/login">Login</a></p>
+        </form>
+        
+        </div>
+    </div>
+
 
     <script>
         const form = document.querySelector('form');
