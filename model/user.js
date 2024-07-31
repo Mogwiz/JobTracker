@@ -38,17 +38,24 @@ const userSchema = new mongoose.Schema({
     },
 })
 
-// Function after user saved to db
-userSchema.post('save', function (doc, next) {
-    console.log('New user was created and saved', doc)
-    next()
-})
-
 //Function before user saved to db
 userSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt()
     this.password = await bcrypt.hash(this.password, salt)
     next()
 })
+
+//Static method to login user
+userSchema.statics.login = async function(email, password) {
+    const user = await this.findOne({ email })
+    if (user) {
+        const auth = await bcrypt.compare(password, user.password)
+        if (auth) {
+            return user
+        }
+        throw Error('Incorrect password')
+    }
+    throw Error('Incorrect email')
+}
 
 module.exports = mongoose.model("User", userSchema)
