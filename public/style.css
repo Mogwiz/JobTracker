@@ -44,6 +44,47 @@ nav ul a:hover {
   color: rgb(247, 181, 168);
 }
 
+.section-home {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  margin-top: 50px;
+}
+.section-home .intro {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-home .intro a {
+  text-decoration: none;
+  background-color: rgb(242, 209, 130);
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+.section-home .intro a:hover {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
+}
+.section-home .btn {
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+  justify-content: center;
+}
+.section-home .btn a {
+  text-decoration: none;
+  background-color: rgb(242, 209, 130);
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+.section-home .btn a:hover {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
+}
+
 .section-signup {
   display: flex;
   flex-direction: row;
@@ -193,13 +234,134 @@ nav ul a:hover {
 
 .profil-section {
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  width: 80vw;
+  margin: auto;
+  gap: 50px;
 }
 .profil-section .myprofil {
-  background-color: aquamarine;
+  box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
+  border-radius: 10px;
+  grid-column: 1/3;
+  grid-row: 1;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+}
+.profil-section .myprofil a {
+  text-decoration: none;
+  background-color: rgb(242, 209, 130);
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+.profil-section .myprofil a:hover {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
 }
 .profil-section .image {
-  background-color: blue;
+  box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
+  border-radius: 10px;
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 .profil-section .detail {
-  background-color: coral;
+  box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
+  border-radius: 10px;
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+}
+.profil-section .detail .title {
+  border-bottom: 1px solid black;
+}
+.profil-section .detail a {
+  text-decoration: none;
+  background-color: rgb(242, 209, 130);
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+.profil-section .detail a:hover {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
+}
+.profil-section .detail .download {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.section-create-job {
+  width: 70vw;
+  margin: auto;
+}
+.section-create-job h1 {
+  text-align: center;
+}
+.section-create-job .formulaire {
+  box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
+  border-radius: 10px;
+  padding: 30px 30px;
+}
+.section-create-job .formulaire form {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  align-items: left;
+  justify-content: space-between;
+  margin: auto;
+  gap: 20px;
+}
+.section-create-job .formulaire form input {
+  border: none;
+  height: 35px;
+  background-color: rgb(245, 246, 247);
+  border-radius: 10px;
+  width: 600px;
+}
+.section-create-job .formulaire form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: none;
+  margin-left: -15px;
+}
+.section-create-job .formulaire form fieldset legend {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.section-create-job .formulaire form textarea {
+  border: none;
+  background-color: rgb(245, 246, 247);
+  border-radius: 10px;
+}
+.section-create-job .formulaire form .status, .section-create-job .formulaire form .origin {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+.section-create-job .formulaire form button {
+  background-color: rgb(247, 181, 168);
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+.section-create-job .formulaire form button:hover {
+  background-color: rgb(242, 209, 130);
 }/*# sourceMappingURL=style.css.map */

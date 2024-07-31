@@ -1,15 +1,28 @@
 <%- include('partials/header'); -%>
 
 <body>
-    <h1>home</h1>
-    <ul>
-        <% if (user) { %>
-        <li>Welcome, <%= user.firstName %></li>
-        <li><a href="/logout">Logout</a></li>
-        <% } else { %>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Signup</a></li>
-        <% } %>
-    </ul>
+    <div class="section-home">
+            <% if (user) { %>
+                <div class="intro">
+                    <h1>Dashboard</h1>
+                    <a href="/createJob">Create a new job</a>
+                </div>
+                
+
+
+
+
+
+            <% } else { %>
+            <h1>Dashboard</h1>
+            <h2>You're not connected</h2>
+            <img src="design.png" alt="" width="400px">
+            <div class="btn">
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            </div>
+            <% } %>
+    </div>
+    
 </body>
 </html>

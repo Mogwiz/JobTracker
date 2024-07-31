@@ -7,12 +7,14 @@
             <a href="">Change password</a>
         </div>
         <div class="image">
-            <img src="" alt="">
-            <h2>Shana<span>Biot</span></h2>
+            <img src="profil.png" alt="photo de profil" width="250px">
+            <h2><%= user.firstName+ " " %><span><%= user.lastName %></span></h2>
         </div>
         <div class="detail">
-            <p>Email : <span>shanabiot@gmail.com</span></p>
-            <p>GitHub : <span>https://www.github.com/DoeJohn</span></p>
+            <p class="title">Email</p>
+            <p><%= user.email %></p>
+            <p class="title">GitHub</p>
+            <p><%= user.github %></p>
             <div class="download">
                 <a href="">Download CV</a>
                 <a href="">Upload new CV</a>
