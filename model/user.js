@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const { isEmail } = require('validator')
 const bcrypt = require('bcrypt')
-const Job = require('../model/job')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -28,10 +27,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
     },
-    jobs: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Job',
-    }],
     createdAt: {
         type: Date,
         immutable: true,

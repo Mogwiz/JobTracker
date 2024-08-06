@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const { isEmail } = require('validator')
-const User = require('../model/user')
 
 const jobSchema = new mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
     },
     jobTitle: {
         type: String,
