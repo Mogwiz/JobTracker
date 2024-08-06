@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const port = 3000
 const authRoutes = require('./routes/authRoutes')
+const jobsRoutes = require('./routes/jobsRoutes')
 const cookieParser = require('cookie-parser')
 const User = require('./model/user')
 const Job = require('./model/job')
@@ -11,6 +12,7 @@ const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 const app = express()
 
 app.use(express.json())
+app.use(express.urlencoded({ extended:false }))
 app.use(express.static('public'))
 app.use(cookieParser())
 
@@ -54,3 +56,4 @@ app.get('/job', requireAuth, (req, res) =>{
 })
 
 app.use(authRoutes)
+app.use(jobsRoutes)
