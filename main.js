@@ -4,8 +4,6 @@ const port = 3000
 const authRoutes = require('./routes/authRoutes')
 const jobsRoutes = require('./routes/jobsRoutes')
 const cookieParser = require('cookie-parser')
-const User = require('./model/user')
-const Job = require('./model/job')
 const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 
 // Init app & middlewares

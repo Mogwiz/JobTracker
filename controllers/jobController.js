@@ -1,13 +1,15 @@
+const express = require('express')
 const Job = require('../model/job')
+const User = require('../model/user')
 const { requireAuth, checkUser } = require('../middleware/authMiddleware')
 
 module.exports.createJob_get = (req, res) =>{
-    res.render('createJob')
+    res.render('createJob', { job })
 }
 
-module.exports.createJob_post = requireAuth, checkUser, async (req, res) =>{
+module.exports.createJob_post = async (req, res) =>{
     const { jobTitle, company, website, name, email, phone, address, origin, status, comment } = req.body
-    const userID = req.user._id
+    const userID = req.user.id
     console.log(req.body)
 
     try {

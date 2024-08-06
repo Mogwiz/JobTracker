@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const { isEmail } = require('validator')
+const User = require('../model/user')
+
 
 const jobSchema = new mongoose.Schema({
     userID: {
