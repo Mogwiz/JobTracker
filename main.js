@@ -44,6 +44,23 @@ app.get('/', async (req, res) =>{
     }
 })
 
+app.delete('/', requireAuth, async (req, res) => {
+    try {
+        const jobID = req.params.id;
+
+        const deletedJob = await Job.findByIdAndDelete(jobID);
+
+        if (!deletedJob) {
+        return res.status(404).send('Job not found');
+    }
+
+        res.status(200).send('Job deleted successfully');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error deleting job');
+    }
+});
+
 app.get('/login', (req, res) =>{
     res.render('login')
 })
@@ -71,6 +88,43 @@ app.get('/job/:id', requireAuth, async (req, res) =>{
         res.status(500).send('Erreur lors de la récupération du job');
     }
 })
+
+// Delete one job
+app.delete('/job/:id', requireAuth, async (req, res) => {
+    try {
+        const jobID = req.params.id;
+
+        const deletedJob = await Job.findByIdAndDelete(jobID);
+
+        if (!deletedJob) {
+        return res.status(404).send('Job not found');
+    }
+
+        res.status(200).send('Job deleted successfully');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error deleting job');
+    }
+});
+
+// Delete every jobs by user
+/* app.delete('/jobs/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        const deletedJobsCount = await Job.deleteMany({ userId });
+
+        if (deletedJobsCount === 0) {
+        return res.status(204).send('No jobs found for this user');
+        } else {
+        return res.status(200).send(`${deletedJobsCount} jobs deleted successfully`);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error deleting jobs');
+    }
+}); */
+
 
 app.use(authRoutes)
 app.use(jobsRoutes)
