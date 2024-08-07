@@ -5,6 +5,8 @@ const authRoutes = require('./routes/authRoutes')
 const jobsRoutes = require('./routes/jobsRoutes')
 const cookieParser = require('cookie-parser')
 const { requireAuth, checkUser } = require('./middleware/authMiddleware')
+const Job = require('./model/job')
+
 
 // Init app & middlewares
 const app = express()
@@ -29,8 +31,17 @@ mongoose.connect(dbURI)
 // Routes
 app.get('*', checkUser)
 
-app.get('/', (req, res) =>{
-    res.render('home')
+app.get('/', async (req, res) =>{
+    try {
+        const userID = req.user.id;
+        const jobs = await Job.find({ userID })
+        .populate( 'userID' )
+        res.render('home', { jobs });
+        console.log(jobs);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erreur lors de la récupération des jobs');
+    }
 })
 
 app.get('/login', (req, res) =>{
@@ -49,8 +60,16 @@ app.get('/createJob', requireAuth, (req, res) =>{
     res.render('createJob')
 })
 
-app.get('/job', requireAuth, (req, res) =>{
-    res.render('job')
+app.get('/job/:id', requireAuth, async (req, res) =>{
+    try {
+        const jobID = req.params.id;
+        const job = await Job.findById( jobID )
+        res.render('job', { job });
+        console.log(job);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erreur lors de la récupération du job');
+    }
 })
 
 app.use(authRoutes)

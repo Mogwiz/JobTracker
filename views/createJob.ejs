@@ -5,8 +5,10 @@
         <h1>Create a new job</h1>
         <div class="formulaire">
             <form>
-                <label for="job-title">Job title</label>
-                    <input type="text" id="job-title" name="job-title" required>
+                <label for="jobTitle">Job title</label>
+                    <input type="text" id="jobTitle" name="jobTitle" required>
+                <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
                 <label for="website">Website</label>
                     <input type="text" id="website" name="website" required>
                 <fieldset>
@@ -29,12 +31,50 @@
                     <label for="status">Status</label>
                     <textarea name="status" id="status" cols="65" rows="5"></textarea>
                 </div>
-                <label for="comments">Comments</label>
-                    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+                <label for="comment">Comments</label>
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
                 <button>Save</button>
             </form>
         </div>
     </div>
     
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get values
+            const jobTitle = form.jobTitle.value;
+            const company = form.company.value;
+            const website = form.website.value;
+            const name = form.name.value;
+            const email = form.email.value;
+            const phone = form.phone.value;
+            const address = form.address.value;
+            const origin = form.origin.value;
+            const status = form.status.value;
+            const comment = form.comment.value;
+
+
+            try{
+                const res = await fetch('/createJob', {
+                    method: 'POST',
+                    body: JSON.stringify({ jobTitle, company, website, name, email, phone, address, origin, status, comment }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                const data = await res.json()
+                console.log(data)
+                if (data.jobs) {
+                    location.assign('/')
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+
+        })
+    </script>
+
 </body>
 </html>
