@@ -1,0 +1,100 @@
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav>
+        <h1><a href="/">Search <span>job</span></a></h1>
+        <ul>
+        <% if (user) { %>
+            <li><%= user.firstName +' '+ user.lastName %></li>
+            <li><a href="/profile">My profile</a></li>
+            <li><a href="/logout">Log out</a></li>
+        <% } else { %>
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/signup" class="btn">Sign up</a></li>
+        <% } %>
+        </ul>
+    </nav>
+<body>
+    <div class="section-create-job">
+        <h1>Update the job</h1>
+        <div class="formulaire">
+            <form>
+                <label for="jobTitle">Job title</label>
+                    <input type="text" id="jobTitle" name="jobTitle" value="<%= job.jobTitle %>" required>
+                <label for="company">Company</label>
+                    <input type="text" id="company" name="company" value="<%= job.company %>" required>
+                <label for="website">Website</label>
+                    <input type="text" id="website" name="website" value="<%= job.website %>" required>
+                <fieldset>
+                    <legend>Employer’s contact</legend>
+                    <label for="name">Name</label>
+                        <input type="text" id="name" name="name" value="<%= job.name %>" required>
+                    <label for="email">Email of contact</label>
+                        <input type="email" id="email" name="email" value="<%= job.email %>" required>
+                    <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" value="0<%= job.phone %>" required>
+                    <label for="address">Address</label>
+                        <input type="text" id="address" name="address" value="<%= job.address %>" required>
+                </fieldset>
+                <div class="origin">
+                    <label for="origin">Origin</label>
+                    <textarea name="origin" id="origin" cols="65" rows="5" ><%= job.origin %></textarea>
+                
+                </div>
+                <div class="status">
+                    <label for="status">Status</label>
+                    <textarea name="status" id="status" cols="65" rows="5"><%= job.status %></textarea>
+                </div>
+                <label for="comment">Comments</label>
+                    <textarea name="comment" id="comment" cols="30" rows="10"><%= job.comment %></textarea>
+                    <input type="hidden" name="id" value="<%= job._id %>">
+                    <button>Update</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get values
+            const jobTitle = form.jobTitle.value;
+            const company = form.company.value;
+            const website = form.website.value;
+            const name = form.name.value;
+            const email = form.email.value;
+            const phone = form.phone.value;
+            const address = form.address.value;
+            const origin = form.origin.value;
+            const status = form.status.value;
+            const comment = form.comment.value;
+            const jobID = form.id.value;
+
+
+            try{
+                const res = await fetch(`/update/${jobID}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ jobTitle, company, website, name, email, phone, address, origin, status, comment }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                const data = await res.json()
+                if (data) {
+                    location.assign(`/job/${jobID}`)
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+
+        })
+    </script>
+
+</body>
+</html>

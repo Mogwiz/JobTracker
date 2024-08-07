@@ -2,5 +2,23 @@
 
 <body>
     <h1>job</h1>
+
+    <h1><%= job.jobTitle %></h1>
+    <button id="updateButton">Update</button>
+    <p id="hiddenID"><%= job._id %></p>
+
+    <script>
+
+    const jobID = document.getElementById('hiddenID').textContent;
+    const button = document.getElementById('updateButton');
+
+    button.addEventListener('click', () =>{
+        location.assign(`/update/${jobID}`)
+    })
+
+
+
+    </script>
+
 </body>
 </html>

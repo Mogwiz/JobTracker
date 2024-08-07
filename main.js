@@ -77,6 +77,37 @@ app.get('/createJob', requireAuth, (req, res) =>{
     res.render('createJob')
 })
 
+app.get('/update/:id', requireAuth, async (req, res) =>{
+    try {
+        const jobID = req.params.id;
+        const job = await Job.findById( jobID )
+        res.render('update', { job });
+        console.log(job);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erreur lors de la récupération du job');
+    }
+})
+
+app.put('/update/:id', requireAuth, async (req, res) => {
+    try {
+        const jobID = req.params.id;
+
+        const updatedJobData = req.body;
+
+        const updatedJob = await Job.findByIdAndUpdate(jobID, updatedJobData, { new: true });
+
+        if (!updatedJob) {
+        return res.status(404).send('Job not found');
+        }
+
+        res.status(200).send({message:'Job updated successfully'});
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating job');
+    }
+});
+
 app.get('/job/:id', requireAuth, async (req, res) =>{
     try {
         const jobID = req.params.id;
@@ -108,9 +139,9 @@ app.delete('/job/:id', requireAuth, async (req, res) => {
 });
 
 // Delete every jobs by user
-/* app.delete('/jobs/:userId', async (req, res) => {
+app.delete('/jobs/:id', async (req, res) => {
     try {
-        const userId = req.params.userId;
+        const userId = req.params.id;
 
         const deletedJobsCount = await Job.deleteMany({ userId });
 
@@ -123,7 +154,7 @@ app.delete('/job/:id', requireAuth, async (req, res) => {
         console.error(err);
         res.status(500).send('Error deleting jobs');
     }
-}); */
+});
 
 
 app.use(authRoutes)

@@ -19,7 +19,22 @@
                 <a href="/signup">Signup</a>
             </div>
             <% } %>
+            <!-- j'ai mis ça pour essayer tu peux enlever et faire à ta manière -->
+            <% if (jobs.length > 0){ %>
+            <% jobs.forEach(function(job){ %>
+                <%= job.jobTitle %>
+                <p id="hiddenID"><%= job._id %></p>
+                <button class="deleteButton">Delete</button>
+                <% })}; %>
+
     </div>
     
+    <script>
+
+        const deleteButton = document.getElementsByClassName('deleteButton');
+        
+
+    </script>
+
 </body>
 </html>

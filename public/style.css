@@ -364,4 +364,8 @@ nav ul a:hover {
 }
 .section-create-job .formulaire form button:hover {
   background-color: rgb(242, 209, 130);
+}
+
+#hiddenID {
+  visibility: hidden;
 }/*# sourceMappingURL=style.css.map */
