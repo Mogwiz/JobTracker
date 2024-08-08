@@ -1,7 +1,4 @@
-const express = require('express')
 const Job = require('../model/job')
-const User = require('../model/user')
-const { requireAuth, checkUser } = require('../middleware/authMiddleware')
 
 module.exports.createJob_get = (req, res) =>{
     res.render('createJob')

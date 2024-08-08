@@ -31,6 +31,7 @@ mongoose.connect(dbURI)
 // Routes
 app.get('*', checkUser)
 
+//Render the homepage and get every jobs based on the user connected
 app.get('/', async (req, res) => {
     try {
         let jobs;
@@ -65,6 +66,7 @@ app.get('/createJob', requireAuth, (req, res) =>{
     res.render('createJob')
 })
 
+//Render this update page (based on the job we clicked in the job page)
 app.get('/update/:id', requireAuth, async (req, res) =>{
     try {
         const jobID = req.params.id;
@@ -77,6 +79,7 @@ app.get('/update/:id', requireAuth, async (req, res) =>{
     }
 })
 
+//Render the job page based on the job we clicked on in the dashboard
 app.get('/job/:id', requireAuth, async (req, res) =>{
     try {
         const jobID = req.params.id;
