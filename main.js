@@ -37,29 +37,11 @@ app.get('/', async (req, res) =>{
         const jobs = await Job.find({ userID })
         .populate( 'userID' )
         res.render('home', { jobs });
-        console.log(jobs);
     } catch (err) {
         console.error(err);
         res.status(500).send('Erreur lors de la récupération des jobs');
     }
 })
-
-app.delete('/', requireAuth, async (req, res) => {
-    try {
-        const jobID = req.params.id;
-
-        const deletedJob = await Job.findByIdAndDelete(jobID);
-
-        if (!deletedJob) {
-        return res.status(404).send('Job not found');
-    }
-
-        res.status(200).send('Job deleted successfully');
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error deleting job');
-    }
-});
 
 app.get('/login', (req, res) =>{
     res.render('login')

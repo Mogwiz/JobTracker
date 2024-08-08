@@ -6,15 +6,42 @@
     <h1><%= job.jobTitle %></h1>
     <button id="updateButton">Update</button>
     <p id="hiddenID"><%= job._id %></p>
+    <button id="deleteButton">Delete</button>
 
     <script>
 
     const jobID = document.getElementById('hiddenID').textContent;
     const button = document.getElementById('updateButton');
+    const deleteButton = document.getElementById('deleteButton');
 
     button.addEventListener('click', () =>{
         location.assign(`/update/${jobID}`)
     })
+
+    deleteButton.addEventListener("click", async(e)=>{
+        e.preventDefault();
+        let id = jobID;
+        try {
+            const res = await fetch('/job/'+ id,{
+                method : 'DELETE',
+                headers : {'Content-Type' : 'application/json'}
+            })
+            .then(response =>{
+                if (response.ok) {
+                        alert('Post supprimé avec succès');
+                        location.assign('/');
+                }else {
+                    return response.json().then(data => {
+                        throw new Error(data.error);
+                    });
+                }
+            })
+        } 
+        catch (error) {
+            console.error('Error:', error);
+            alert('Une erreur est survenue lors de la suppression du post');
+        }
+    });
 
 
 
