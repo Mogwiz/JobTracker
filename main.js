@@ -31,17 +31,23 @@ mongoose.connect(dbURI)
 // Routes
 app.get('*', checkUser)
 
-app.get('/', async (req, res) =>{
+app.get('/', async (req, res) => {
     try {
+        let jobs;
+
+        if (req.user) {
         const userID = req.user.id;
-        const jobs = await Job.find({ userID })
-        .populate( 'userID' )
+        jobs = await Job.find({ userID }).populate('userID');
+        } else {
+        jobs = await Job.find({});
+        }
+
         res.render('home', { jobs });
     } catch (err) {
         console.error(err);
         res.status(500).send('Erreur lors de la récupération des jobs');
     }
-})
+});
 
 app.get('/login', (req, res) =>{
     res.render('login')
@@ -71,25 +77,6 @@ app.get('/update/:id', requireAuth, async (req, res) =>{
     }
 })
 
-app.put('/update/:id', requireAuth, async (req, res) => {
-    try {
-        const jobID = req.params.id;
-
-        const updatedJobData = req.body;
-
-        const updatedJob = await Job.findByIdAndUpdate(jobID, updatedJobData, { new: true });
-
-        if (!updatedJob) {
-        return res.status(404).send('Job not found');
-        }
-
-        res.status(200).send({message:'Job updated successfully'});
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error updating job');
-    }
-});
-
 app.get('/job/:id', requireAuth, async (req, res) =>{
     try {
         const jobID = req.params.id;
@@ -101,42 +88,6 @@ app.get('/job/:id', requireAuth, async (req, res) =>{
         res.status(500).send('Erreur lors de la récupération du job');
     }
 })
-
-// Delete one job
-app.delete('/job/:id', requireAuth, async (req, res) => {
-    try {
-        const jobID = req.params.id;
-
-        const deletedJob = await Job.findByIdAndDelete(jobID);
-
-        if (!deletedJob) {
-        return res.status(404).send('Job not found');
-    }
-
-        res.status(200).send('Job deleted successfully');
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error deleting job');
-    }
-});
-
-// Delete every jobs by user
-app.delete('/jobs/:id', async (req, res) => {
-    try {
-        const userId = req.params.id;
-
-        const deletedJobsCount = await Job.deleteMany({ userId });
-
-        if (deletedJobsCount === 0) {
-        return res.status(204).send('No jobs found for this user');
-        } else {
-        return res.status(200).send(`${deletedJobsCount} jobs deleted successfully`);
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error deleting jobs');
-    }
-});
 
 
 app.use(authRoutes)
