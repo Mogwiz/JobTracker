@@ -8,6 +8,17 @@
                     <a href="/createJob">Create a new job</a>
                 </div>
                 <!-- j'ai mis ça pour essayer tu peux enlever et faire à ta manière -->
+                <div id="jobsList">
+
+                </div>
+                <div id="filters">
+                    <p id="filter">Status</p>
+                    <p id="filter2">Date</p>
+                </div>
+                <div id="orders">
+                    <p id="order">Asc.</p>
+                    <p id="order2">Desc.</p>
+                </div>
             <% if (jobs.length > 0){ %>
                 <% jobs.forEach(function(job){ %>
                     <%= job.jobTitle %>
@@ -29,6 +40,62 @@
     </div>
     
 <script>
+
+const filters = document.getElementById('filters');
+const orders = document.getElementById('orders');
+const baseUrl = 'http://localhost:3000';
+
+filters.addEventListener('click', () => {
+    const filter = document.getElementById('filter');
+    const filter2 = document.getElementById('filter2');
+
+    if (filter.textContent === "Status") {
+    filter.textContent = "Date";
+    filter2.textContent = "Status";
+    } else {
+    filter.textContent = "Status";
+    filter2.textContent = "Date";
+    }
+
+    const url = buildUrl();
+    updateUrl(url)
+});
+
+orders.addEventListener('click', () => {
+    const order = document.getElementById('order');
+    const order2 = document.getElementById('order2');
+
+    if (order.textContent === "Asc.") {
+    order.textContent = "Desc.";
+    order2.textContent = "Asc.";
+    } else {
+    order.textContent = "Asc.";
+    order2.textContent = "Desc.";
+    }
+
+    const url = buildUrl();
+    updateUrl(url)
+});
+
+function buildUrl() {
+    const filter = document.getElementById('filter').textContent;
+    const order = document.getElementById('order').textContent;
+
+    let sortParam = '';
+    if (filter === 'Status') {
+    sortParam = 'status';
+    } else if (filter === 'Date') {
+    sortParam = 'createdAt';
+    }
+
+    sortParam += order === 'Asc.' ? ',asc' : ',desc';
+
+    return `${baseUrl}?sort=${sortParam}`;
+}
+
+function updateUrl(url) {
+    history.pushState({}, '', url);
+}
 
 </script>
 
