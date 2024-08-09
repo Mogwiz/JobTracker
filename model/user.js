@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
     },
-    imageUrl: {
+    profileImage: {
         type: String,
     },
     createdAt: {

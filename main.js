@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const port = 3000
@@ -6,6 +7,11 @@ const jobsRoutes = require('./routes/jobsRoutes')
 const cookieParser = require('cookie-parser')
 const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 const Job = require('./model/job')
+const multer = require('multer');
+const uploadImage = require('./uploadImages');
+const fs = require('fs');
+const User = require('./model/user');
+const upload = multer({ dest: 'uploads/' });
 
 
 // Init app & middlewares
@@ -91,6 +97,25 @@ app.get('/job/:id', requireAuth, async (req, res) =>{
         res.status(500).send('Erreur lors de la récupération du job');
     }
 })
+
+app.post('/upload', checkUser, upload.single('profileImage'), async (req, res) => {
+  try {
+    const imagePath = req.file.path;
+    const imageUrl = await uploadImage(imagePath);
+
+    const user = await User.findById(req.user.id); // Ensure you handle authentication
+    user.profileImage = imageUrl;
+    await user.save();
+
+    fs.unlinkSync(imagePath);
+
+    res.status(200).redirect('/profile');
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 
 
 app.use(authRoutes)

@@ -7,7 +7,13 @@
             <a href="">Change password</a>
         </div>
         <div class="image">
-            <img src="images/profil.png" alt="photo de profil" width="250px">
+
+            <% if (user.profileImage && user.profileImage.trim() !== "") { %>
+                <img src="<%= user.profileImage %>" alt="photo de profil" width="250px">
+            <% } else { %>
+                <img src="images/profil.png" alt="photo de profil" width="250px">
+            <% } %>
+
             <h2><%= user.firstName+ " " %><span><%= user.lastName %></span></h2>
         </div>
         <div class="detail">
@@ -21,10 +27,19 @@
             </div>
         </div>
     </div>
-    
+
+
+    <!--Test pour cloudinary-->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="profileImage" />
+        <input type="submit" value="Upload" />
+    </form>
+    <!--Fin du test-->
+
+
     <script>
 
-        
+
     </script>
 
 </body>
