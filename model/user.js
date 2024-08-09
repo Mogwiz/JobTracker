@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema({
     profileImage: {
         type: String,
     },
+    profilePDF: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         immutable: true,

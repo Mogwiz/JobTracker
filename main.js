@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 const Job = require('./model/job')
 const multer = require('multer');
-const uploadImage = require('./uploadImages');
+const { uploadImage, uploadTempPDF, uploadPDF } = require('./uploadImagesPDF');
 const fs = require('fs');
 const User = require('./model/user');
 const upload = multer({ dest: 'uploads/' });
@@ -98,24 +98,41 @@ app.get('/job/:id', requireAuth, async (req, res) =>{
     }
 })
 
+
+//Upload a profile picture, when you upload a second time, it changes in the database too
 app.post('/upload', checkUser, upload.single('profileImage'), async (req, res) => {
-  try {
-    const imagePath = req.file.path;
-    const imageUrl = await uploadImage(imagePath);
+    try {
+        const imagePath = req.file.path;
+        const imageUrl = await uploadImage(imagePath);
 
-    const user = await User.findById(req.user.id); // Ensure you handle authentication
-    user.profileImage = imageUrl;
-    await user.save();
+        const user = await User.findById(req.user.id);
+        user.profileImage = imageUrl;
+        await user.save();
 
-    fs.unlinkSync(imagePath);
+        fs.unlinkSync(imagePath);
 
-    res.status(200).redirect('/profile');
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+        res.status(200).redirect('/profile');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
+app.post('/upload-pdf', checkUser, uploadTempPDF.single('profilePDF'), async (req, res) => {
+    try {
+        const pdfPath = req.file.path;
+        const pdfUrl = await uploadPDF(pdfPath);
 
+        const user = await User.findById(req.user.id);
+        user.profilePDF = pdfUrl;
+        await user.save();
+
+        fs.unlinkSync(pdfPath);
+
+        res.status(200).redirect('/profile');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 
 app.use(authRoutes)

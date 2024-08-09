@@ -22,8 +22,7 @@
             <p class="title">GitHub</p>
             <p><%= user.github %></p>
             <div class="download">
-                <a href="">Download CV</a>
-                <a href="">Upload new CV</a>
+                <a href="<%= user.profilePDF %>" download="CV.pdf">View CV</a>
             </div>
         </div>
     </div>
@@ -33,6 +32,13 @@
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="profileImage" />
         <input type="submit" value="Upload" />
+    </form>
+
+
+    <form action="/upload-pdf" method="POST" enctype="multipart/form-data">
+        <label for="profilePDF">Choose a PDF to upload:</label>
+        <input type="file" id="profilePDF" name="profilePDF" accept="application/pdf" required>
+        <button type="submit">Upload PDF</button>
     </form>
     <!--Fin du test-->
 
