@@ -29,6 +29,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
     },
+    imageUrl: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         immutable: true,
