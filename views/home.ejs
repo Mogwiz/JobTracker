@@ -56,7 +56,8 @@ const seeMore = document.querySelector('.seeMore');
 const jobID = document.querySelector('#hiddenID').textContent;
 
 seeMore.addEventListener('click', ()=>{
-    location.assign(`/job/${jobID}`);
+    const ID = seeMore.nextElementSibling;
+    location.assign(`/job/${ID}`);
 })
 
 
