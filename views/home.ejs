@@ -27,7 +27,7 @@
                                 <p class="status-design"><%= job.status %></p>
                                 <h2><%= job.jobTitle %></h2>
                                 <p> <%= job.company %></p>  
-                                <button class="seeMore">See more</button>
+                                <a href="/job/<%= job._id %>"><button class="seeMore">See more</button></a>
                                 <p id="hiddenID"><%= job._id %></p>
                             </div>
 
@@ -54,11 +54,6 @@ const orders = document.getElementById('orders');
 const baseUrl = 'http://localhost:3000';
 const seeMore = document.querySelector('.seeMore');
 const jobID = document.querySelector('#hiddenID').textContent;
-
-seeMore.addEventListener('click', ()=>{
-    const ID = seeMore.nextElementSibling.textContent;
-    location.assign(`/job/${ID}`);
-})
 
 
 filters.addEventListener('click', () => {
