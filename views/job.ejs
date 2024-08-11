@@ -1,12 +1,31 @@
 <%- include('partials/header'); -%>
 
 <body>
-    <h1>job</h1>
-
-    <h1><%= job.jobTitle %></h1>
-    <button id="updateButton">Update</button>
-    <p id="hiddenID"><%= job._id %></p>
-    <button id="deleteButton">Delete</button>
+    <div class="section-job">
+        <div class="partieUne">
+            <h1><%= job.jobTitle %></h1>
+            <ul>
+                <li><span>Company:</span> <%= job.company %></li>
+                <li><span>Website:</span> <%= job.website %></li>
+                <li><span>Name of employer:</span> <%= job.name %></li>
+                <li><span>Email of employer:</span> <%= job.email %></li>
+                <li><span>Phone of employer:</span> <%= job.phone %></li>
+                <li><span>Address of company:</span> <%= job.address %></li>
+                <li><span>Origin:</span> <%= job.origin %></li>
+                <li><span>Status:</span> <%= job.status %></li>
+                <li><span>Comment:</span> <%= job.comment %></li>
+            </ul>
+            <p id="hiddenID"><%= job._id %></p>
+            <div class="btn">
+                <button id="updateButton">Update</button>
+                <button id="deleteButton">Delete</button>
+            </div>
+            
+        </div>
+        <div class="partieImage">
+            <img src="job.png" alt="Job">
+        </div>
+    </div>
 
     <script>
 

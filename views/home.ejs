@@ -8,7 +8,7 @@
                     <a href="/createJob">Create a new job</a>
                 </div>
                 <!-- j'ai mis ça pour essayer tu peux enlever et faire à ta manière -->
-                <div id="jobsList">
+                <!-- <div id="jobsList">
 
                 </div>
                 <div id="filters">
@@ -18,12 +18,21 @@
                 <div id="orders">
                     <p id="order">Asc.</p>
                     <p id="order2">Desc.</p>
-                </div>
-            <% if (jobs.length > 0){ %>
-                <% jobs.forEach(function(job){ %>
-                    <%= job.jobTitle %>
-                    <p id="hiddenID"><%= job._id %></p>
+                </div> -->
+                
+                    <% if (jobs.length > 0){ %>
+                    <div class="container-job">
+                        <% jobs.forEach(function(job){ %>
+                            <div class="job-design">
+                                <p class="status-design"><%= job.status %></p>
+                                <h2><%= job.jobTitle %></h2>
+                                <p> <%= job.company %></p>  
+                                <button class="seeMore">See more</button>
+                                <p id="hiddenID"><%= job._id %></p>
+                            </div>
+
                     <% })}; %>
+                </div>
 
                     
             <% } else { %>
@@ -43,6 +52,13 @@
 const filters = document.getElementById('filters');
 const orders = document.getElementById('orders');
 const baseUrl = 'http://localhost:3000';
+const seeMore = document.querySelector('.seeMore');
+const jobID = document.querySelector('#hiddenID').textContent;
+
+seeMore.addEventListener('click', ()=>{
+    location.assign(`/job/${jobID}`);
+})
+
 
 filters.addEventListener('click', () => {
     const filter = document.getElementById('filter');

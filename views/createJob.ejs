@@ -24,15 +24,24 @@
                 </fieldset>
                 <div class="origin">
                     <label for="origin">Origin</label>
-                    <textarea name="origin" id="origin" cols="65" rows="5"></textarea>
-                
+                    <select name="origin" id="origin">
+                        <option value="">Select an origin</option>
+                        <option value="Candidature spontanée">Candidature spontanée</option>
+                        <option value="Job offer">Job offer</option>
+                    </select>
                 </div>
                 <div class="status">
                     <label for="status">Status</label>
-                    <textarea name="status" id="status" cols="65" rows="5"></textarea>
+                    <select name="status" id="status">
+                        <option value="">Select a status</option>
+                        <option value="Interested">Interested</option>
+                        <option value="CV sent">CV sent</option>
+                        <option value="Negative">Negative</option>
+                        <option value="Interview">Interview</option>
+                    </select>
                 </div>
                 <label for="comment">Comments</label>
-                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
                 <button>Save</button>
             </form>
         </div>
@@ -66,7 +75,7 @@
                 const data = await res.json()
                 console.log(data.jobs)
                 if (data.jobs) {
-                    location.assign('/')
+                    location.assign('/');
                 }
             }
             catch (err) {

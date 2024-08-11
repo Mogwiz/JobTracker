@@ -11,7 +11,7 @@ module.exports.createJob_post = async (req, res) =>{
 
     try {
         const job = await Job.create({ userID, jobTitle, company, website, name, email, phone, address, origin, status, comment })
-        res.status(201).json(job)
+        res.status(201).json({job : job._id})
     } 
     catch(err) {
         res.status(400).json(err)

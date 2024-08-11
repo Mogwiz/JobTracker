@@ -84,6 +84,36 @@ nav ul a:hover {
 .section-home .btn a:hover {
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
 }
+.section-home .container-job {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.section-home .container-job .job-design {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
+  border-radius: 10px;
+  flex: 1 1 30%;
+  max-width: calc(33.333% - 20px);
+  margin: 10px;
+  box-sizing: border-box;
+  align-items: center;
+}
+.section-home .container-job .seeMore {
+  border: none;
+  border-bottom: 1px solid #F7B4A7;
+  width: 85px;
+  background-color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #F7B4A7;
+  padding-bottom: 5px;
+}
+.section-home .container-job .seeMore:hover {
+  color: rgb(242, 209, 130);
+  border-bottom: 1px solid rgb(242, 209, 130);
+}
 
 .section-signup {
   display: flex;
@@ -172,16 +202,10 @@ nav ul a:hover {
 .login-section {
   background-color: rgb(242, 209, 130);
   height: 100vh;
-  /* background-image: url(design.png);
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain; */
-}
-.login-section form::after {
-  content: url(design.png);
-  position: absolute;
-  left: 600px;
-  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.4));
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 100px;
 }
 .login-section form {
   width: 30vw;
@@ -231,6 +255,9 @@ nav ul a:hover {
 .login-section form .formulaire a:hover {
   color: rgb(247, 181, 168);
 }
+.login-section .image {
+  padding-top: 130px;
+}
 
 .profil-section {
   display: grid;
@@ -239,6 +266,7 @@ nav ul a:hover {
   width: 80vw;
   margin: auto;
   gap: 50px;
+  padding-bottom: 100px;
 }
 .profil-section .myprofil {
   box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
@@ -272,7 +300,25 @@ nav ul a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  padding-top: 30px;
+}
+.profil-section .image #btnUploadImage {
+  background-color: rgb(242, 209, 130);
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 15px;
+}
+.profil-section .image #btnUploadImage:hover {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
+}
+.profil-section .image #chargeImage {
+  border: none;
+  border-radius: 10px;
+  background-color: #F7B4A7;
+  padding: 7px 10px;
+  color: white;
 }
 .profil-section .detail {
   box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
@@ -282,26 +328,34 @@ nav ul a:hover {
   display: flex;
   flex-direction: column;
   padding: 30px 40px;
+  gap: 15px;
 }
 .profil-section .detail .title {
   border-bottom: 1px solid black;
 }
-.profil-section .detail a {
+.profil-section .detail a, .profil-section .detail #btnUploadPdf {
   text-decoration: none;
   background-color: rgb(242, 209, 130);
   color: white;
   text-transform: uppercase;
   border-radius: 10px;
   padding: 10px 15px;
+  border: none;
 }
-.profil-section .detail a:hover {
+.profil-section .detail a:hover, .profil-section .detail #btnUploadPdf:hover {
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
+}
+.profil-section .detail #profilePDF {
+  border: none;
+  border-radius: 10px;
+  background-color: #F7B4A7;
+  padding: 7px 10px;
+  color: white;
 }
 .profil-section .detail .download {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 50px;
 }
 
 .section-create-job {
@@ -343,6 +397,12 @@ nav ul a:hover {
   font-weight: bold;
   padding-bottom: 20px;
 }
+.section-create-job .formulaire form select {
+  background-color: rgb(245, 246, 247);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
 .section-create-job .formulaire form textarea {
   border: none;
   background-color: rgb(245, 246, 247);
@@ -364,6 +424,55 @@ nav ul a:hover {
 }
 .section-create-job .formulaire form button:hover {
   background-color: rgb(242, 209, 130);
+}
+
+.section-job {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+.section-job .partieUne {
+  box-shadow: 0px 0px 15px rgba(242, 208, 130, 0.327);
+  border-radius: 10px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+}
+.section-job .partieUne h1 {
+  color: #F7B4A7;
+  text-transform: capitalize;
+}
+.section-job .partieUne ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.section-job .partieUne ul li {
+  border-bottom: 1px solid #F7B4A7;
+  padding-bottom: 5px;
+}
+.section-job .partieUne ul li span {
+  font-weight: bold;
+}
+.section-job .btn {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+.section-job .btn button {
+  background-color: rgb(242, 209, 130);
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 10px 15px;
+  border: none;
+}
+.section-job .btn button:hover {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.121);
 }
 
 #hiddenID {

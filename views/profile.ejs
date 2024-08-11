@@ -15,6 +15,10 @@
             <% } %>
 
             <h2><%= user.firstName+ " " %><span><%= user.lastName %></span></h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="profileImage" id="chargeImage">
+                <input type="submit" id="btnUploadImage" value="Upload your image" />
+            </form>
         </div>
         <div class="detail">
             <p class="title">Email</p>
@@ -22,24 +26,21 @@
             <p class="title">GitHub</p>
             <p><%= user.github %></p>
             <div class="download">
-                <a href="<%= user.profilePDF %>" download="CV.pdf">View CV</a>
+                <a href="<%= user.profilePDF %>" download="CV.pdf" target="_blank">View CV</a>
             </div>
+            <form action="/upload-pdf" method="POST" enctype="multipart/form-data">
+                <input type="file" id="profilePDF" name="profilePDF" accept="application/pdf" required>
+                <button type="submit" id="btnUploadPdf">Upload PDF</button>
+            </form>
         </div>
     </div>
 
 
     <!--Test pour cloudinary-->
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="profileImage" />
-        <input type="submit" value="Upload" />
-    </form>
+    
 
 
-    <form action="/upload-pdf" method="POST" enctype="multipart/form-data">
-        <label for="profilePDF">Choose a PDF to upload:</label>
-        <input type="file" id="profilePDF" name="profilePDF" accept="application/pdf" required>
-        <button type="submit">Upload PDF</button>
-    </form>
+    
     <!--Fin du test-->
 
 
