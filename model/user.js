@@ -48,10 +48,12 @@ const userSchema = new mongoose.Schema({
 
 //Function before user saved to db
 userSchema.pre('save', async function (next) {
-    const salt = await bcrypt.genSalt()
-    this.password = await bcrypt.hash(this.password, salt)
-    next()
-})
+    if (!this.isModified('password')) {
+        return next();
+    }
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+});
 
 //Static method to login user
 userSchema.statics.login = async function(email, password) {
